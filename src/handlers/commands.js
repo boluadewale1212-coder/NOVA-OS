@@ -12,9 +12,11 @@ class CommandHandler {
   }
 
   loadCommands() {
-    const commandsDir = config.commandsPath;
+    const commandsDir = path.resolve(config.commandsPath);
 
     const walkDir = (dir) => {
+      if (!fs.existsSync(dir)) return;
+
       const files = fs.readdirSync(dir);
 
       files.forEach((file) => {
@@ -25,7 +27,8 @@ class CommandHandler {
           walkDir(filePath);
         } else if (file.endsWith('.js')) {
           try {
-            const cmd = require(filePath);
+            const requirePath = filePath.split(path.sep).join('/');
+            const cmd = require(requirePath);
             if (cmd.name) {
               this.commands.set(cmd.name, cmd);
               console.log(`✅ Loaded command: ${cmd.name}`);
@@ -37,9 +40,7 @@ class CommandHandler {
       });
     };
 
-    if (fs.existsSync(commandsDir)) {
-      walkDir(commandsDir);
-    }
+    walkDir(commandsDir);
   }
 
   async handle(msg, msgBody, sender, isGroup, isOwner) {

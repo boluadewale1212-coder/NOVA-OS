@@ -1,0 +1,33 @@
+{
+  "name": "nova-os",
+  "version": "1.0.0",
+  "description": "NOVA OS - A powerful WhatsApp bot powered by BIGACE",
+  "main": "index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=9"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "baileys",
+    "nova-os",
+    "bigace"
+  ],
+  "author": "BIGACE",
+  "license": "MIT",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0",
+    "axios": "^1.6.0",
+    "chalk": "^4.1.2",
+    "dotenv": "^16.3.1",
+    "pino": "^8.16.0",
+    "pino-pretty": "^10.2.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
